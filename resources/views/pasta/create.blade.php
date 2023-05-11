@@ -29,9 +29,9 @@
             <label for="tipo" class="form-label">Tipo</label>
             <select class="form-select" id="tipo" name="tipo">
                 <option selected>Scegli il tipo</option>
-                <option value="Lunga">Lunga</option>
-                <option value="Corta">Corta</option>
-                <option value="Cortissima">Cortissima</option>
+                <option value="lunga">Lunga</option>
+                <option value="corta">Corta</option>
+                <option value="cortissima">Cortissima</option>
               </select>
         </div>
         <div class="mb-3">

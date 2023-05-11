@@ -44,19 +44,22 @@ class PastaController extends Controller
         $newPasta = new Pasta();
 
         //mapping dei campi
-        $newPasta->src = $data["src"];
-        $newPasta->titolo = $data["titolo"];
-        $newPasta->tipo = $data["tipo"];
-        $newPasta->cottura = $data["cottura"];
-        $newPasta->peso = $data["peso"];
-        $newPasta->descrizione = $data["descrizione"];
+        // $newPasta->src = $data["src"];
+        // $newPasta->titolo = $data["titolo"];
+        // $newPasta->tipo = $data["tipo"];
+        // $newPasta->cottura = $data["cottura"];
+        // $newPasta->peso = $data["peso"];
+        // $newPasta->descrizione = $data["descrizione"];
 
         //non abbiamo ID
 
         //salvataggio in tabella
+        $newPasta->fill($data);
         $newPasta->save();
 
-        return redirect()->route('pastas.show', $newPasta->id);
+        // return redirect()->route('pastas.show', $newPasta->id);
+        return to_route('pastas.show', $newPasta->id);
+
 }
 
 
@@ -76,12 +79,12 @@ class PastaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Pasta  $pasta
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Pasta $pasta) //Pasta $pasta
     {
-        //
+        return view('pasta.edit', compact('pasta'));
     }
 
     /**
@@ -91,9 +94,28 @@ class PastaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Pasta $pasta)
     {
-        //
+        //prendiamo i dati del modulo
+        $data = $request->all();
+
+        // //mapping dei campi
+        // $pasta->src = $data["src"];
+        // $pasta->titolo = $data["titolo"];
+        // $pasta->tipo = $data["tipo"];
+        // $pasta->cottura = $data["cottura"];
+        // $pasta->peso = $data["peso"];
+        // $pasta->descrizione = $data["descrizione"];
+
+        // //save
+        // $pasta->save();
+
+        $pasta->update($data);
+
+        //return redirect()->route('pastas.show', $pasta->id);
+        return to_route('pastas.index');
+
+
     }
 
     /**
@@ -102,8 +124,9 @@ class PastaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pasta $pasta)
     {
-        //
+        $pasta->delete();
+        return to_route('pastas.index');
     }
 }

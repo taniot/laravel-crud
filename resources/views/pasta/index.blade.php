@@ -28,7 +28,16 @@
             <td>{{ $pasta->cottura }} min</td>
             <td>{{ $pasta->tipo }}</td>
             <td>{{ $pasta->peso }} gr</td>
-            <td><a href="{{ route('pastas.show', $pasta->id) }}" class="btn btn-primary btn-sm">Dettagli</a></td>
+            <td>
+                <a href="{{ route('pastas.show', $pasta->id) }}" class="btn btn-primary btn-sm">Dettagli</a>
+                 <a href="{{ route('pastas.edit', $pasta->id) }}" class="btn btn-primary btn-sm">Modifica</a>
+                 <form action="{{ route('pastas.destroy', $pasta->id) }}" method="POST">
+                    @csrf
+                    {{-- aggiungiamo il metodo --}}
+                    @method('DELETE')
+                    <input type="submit" value="Cancella" class="btn btn-danger btn-sm">
+                </form>
+            </td>
           </tr>
     @endforeach
     </tbody>
