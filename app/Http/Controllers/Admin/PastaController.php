@@ -38,10 +38,8 @@ class PastaController extends Controller
     public function store(PastaRequest $request)
     {
 
-        $request->validated();
-
         //salvo dati in arrivo dal form
-        $data = $request->all();
+        $data = $request->validated();
         //creo un modello Pasta
         $newPasta = new Pasta();
 
@@ -98,10 +96,10 @@ class PastaController extends Controller
      */
     public function update(PastaRequest $request, Pasta $pasta)
     {
-        $request->validated();
+        //$request->validated();
 
         //prendiamo i dati del modulo
-        $data = $request->all();
+        $data =  $request->validated();;
 
         // //mapping dei campi
         // $pasta->src = $data["src"];
