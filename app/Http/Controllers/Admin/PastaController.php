@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PastaRequest;
 use App\Models\Pasta;
-use Illuminate\Http\Request;
 
 class PastaController extends Controller
 {
@@ -35,8 +35,10 @@ class PastaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PastaRequest $request)
     {
+
+        $request->validated();
 
         //salvo dati in arrivo dal form
         $data = $request->all();
@@ -94,8 +96,10 @@ class PastaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pasta $pasta)
+    public function update(PastaRequest $request, Pasta $pasta)
     {
+        $request->validated();
+
         //prendiamo i dati del modulo
         $data = $request->all();
 
